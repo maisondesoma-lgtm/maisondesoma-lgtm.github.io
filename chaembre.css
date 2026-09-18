@@ -1,0 +1,403 @@
+/* =====================================================
+   CHAEMBRE — Brand Case Study
+   Built from the client's own book/brochure mockup —
+   hero + book spreads are real exported images; only the
+   OVERVIEW section is live text, typeset to spec.
+   ===================================================== */
+
+body.page-chaembre {
+  --cb-bg:        #efe8d9;
+  --cb-paper:     #f7f2e7;
+  --cb-ink:       #1b1811;
+  --cb-ink-mid:   rgba(27,24,17,0.58);
+  --cb-rule:      rgba(27,24,17,0.14);
+
+  --cb-serif:     'Playfair Display', 'Noto Serif KR', serif;
+  --cb-mono:      'IBM Plex Mono', 'Courier New', monospace;
+  /* section titles: Copperplate Regular 45px / -30 tracking */
+  --cb-plate:     'Copperplate', 'Copperplate Gothic Light', var(--cb-serif);
+
+  background: var(--cb-bg);
+  color: var(--cb-ink);
+  font-family: 'Pretendard', sans-serif;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+body.page-chaembre .nav {
+  background: var(--cb-paper);
+  border-bottom: 1px solid var(--cb-rule);
+}
+body.page-chaembre .nav__logo-mark,
+body.page-chaembre .nav__logo-sub { color: var(--cb-ink); }
+body.page-chaembre .nav__links a { color: var(--cb-ink-mid); }
+body.page-chaembre .nav__links a:hover { color: var(--cb-ink); }
+body.page-chaembre .nav__back { color: var(--cb-ink-mid); transition: color 0.2s; }
+body.page-chaembre .nav__back:hover { color: var(--cb-ink); }
+
+.cb-mono {
+  font-family: var(--cb-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ---------- HERO ---------- */
+.cb-hero {
+  position: relative;
+  width: 100%;
+}
+
+.cb-hero__img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.cb-hero__logo {
+  position: absolute;
+  left: 6%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16%;
+  min-width: 140px;
+  max-width: 260px;
+  height: auto;
+}
+
+/* ---------- OVERVIEW ---------- */
+.cb-content {
+  background-image: url('images/chaembre/layout-content-bg.webp');
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+}
+
+/* same column as the book and the spec below it, so the rule lines up */
+.cb-overview {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 140px 32px 120px;
+  text-align: center;
+}
+
+.cb-overview__title {
+  font-family: var(--cb-plate);
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: -0.03em;
+  color: #000;
+}
+
+.cb-overview__body {
+  margin-top: 44px;
+}
+
+.cb-overview__rule {
+  border: 0;
+  border-top: 1px solid rgba(27, 24, 17, 0.35);
+  margin: 64px 0 0;
+}
+
+.cb-overview__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 72px;
+}
+
+.cb-overview__logo {
+  display: block;
+  width: 220px;
+  height: auto;
+  margin: 72px auto 0;
+}
+
+.cb-overview__body p {
+  font-size: 18px;
+  line-height: 30px;
+  letter-spacing: -0.03em;
+  color: #000;
+}
+
+.cb-overview__body p.cb-overview__line1 {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+}
+
+.cb-overview__body p.cb-overview__line2 {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 500;
+}
+
+/* ---------- BOOK (page-flip viewer) ---------- */
+.cb-flip {
+  max-width: 1100px;
+  margin: 0 auto;
+  /* side padding leaves room for the cover, which overhangs the pages */
+  padding: 40px 32px 96px;
+}
+
+.cb-flip__stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1491 / 958;
+  cursor: pointer;
+}
+
+.cb-flip__stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 2400px;
+}
+
+/* The leaf that turns, hinged on the spine. It is a real two-sided sheet:
+   front = this spread's right page, back = the next spread's left page.
+   A turned leaf stays where it lands, so it *is* the left page — nothing
+   is ever swapped in behind it and there is no timing to get wrong. */
+.cb-flip__leaf {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 48.69%;
+  height: 100%;
+  transform-origin: left center;
+  transform: rotateY(0deg);
+  transform-style: preserve-3d;
+  transition: transform 1.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.cb-flip__leaf.is-flipped {
+  transform: rotateY(-180deg);
+}
+
+/* pages too far either side of the spread on show */
+.cb-flip__leaf.is-out {
+  visibility: hidden;
+}
+
+.cb-flip__face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  object-fit: contain;
+  backface-visibility: hidden;
+}
+
+.cb-flip__face--front {
+  width: 100%;
+  object-position: left center;
+  transform: translateZ(0.5px);
+}
+
+/* the board is a shade larger than the pages it closes over, so the
+   page edges underneath stay hidden — as on a real book */
+.cb-flip__face--cover {
+  width: 105.6%;
+}
+
+/* the back is a left page, so it is wider than the leaf; mirroring it
+   about its own centre lands it exactly in the left-hand zone */
+.cb-flip__face--back {
+  width: 105.37%;
+  transform: rotateY(180deg) translateZ(0.5px);
+}
+
+.cb-flip__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  margin-top: 36px;
+}
+
+.cb-flip__arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--cb-rule);
+  background: var(--cb-paper);
+  color: var(--cb-ink);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+}
+
+.cb-flip__arrow:hover { background: var(--cb-bg); }
+
+.cb-flip__counter {
+  color: var(--cb-ink-mid);
+  min-width: 64px;
+  text-align: center;
+}
+
+/* ---------- SPEC (monogram / palette / type / tools) ---------- */
+.cb-spec {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 32px 160px;
+}
+
+.cb-spec__row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 56px;
+  margin-bottom: 72px;
+}
+
+.cb-spec__label {
+  font-family: var(--cb-plate);
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  text-align: center;
+  color: #000;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(27, 24, 17, 0.35);
+}
+
+.cb-spec__body {
+  padding-top: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 190px;
+}
+
+.cb-spec__monogram {
+  width: 104px;
+  height: auto;
+}
+
+.cb-spec__palette {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 14px 26px;
+  justify-content: center;
+}
+
+.cb-spec__palette img {
+  width: 58px;
+  height: auto;
+}
+
+/* hover spins the mark clockwise; on leave it carries on round to upright
+   rather than snapping back, since the keyhole has to end up pointing down */
+@keyframes cb-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.cb-spec__palette img.is-spinning {
+  animation: cb-spin 1.1s linear infinite;
+}
+
+.cb-spec__palette img.is-settling {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cb-spec__palette img.is-spinning { animation: none; }
+  .cb-spec__palette img.is-settling { transition: none; }
+}
+
+.cb-spec__type {
+  flex-direction: column;
+  gap: 18px;
+  text-align: center;
+}
+
+.cb-spec__face { color: var(--cb-ink); line-height: 1.2; }
+.cb-spec__face--copperplate {
+  font-family: var(--cb-plate);
+  font-size: 26px;
+  letter-spacing: 0.02em;
+}
+.cb-spec__face--helvetica {
+  font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 20px;
+}
+.cb-spec__face--pretendard {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 15px;
+}
+
+.cb-spec__tools {
+  list-style: none;
+  margin: 0;
+  padding: 44px 0 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+}
+
+.cb-tool {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.cb-tool__icon {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+}
+
+.cb-tool__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: 'Pretendard', sans-serif;
+}
+
+.cb-tool__text strong {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cb-ink);
+  margin-bottom: 2px;
+}
+
+.cb-tool__text span {
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--cb-ink-mid);
+}
+
+/* ---------- FOOTER NAV ---------- */
+.cb-footer-nav {
+  padding: 40px 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--cb-paper);
+  border-top: 1px solid var(--cb-rule);
+}
+
+.cb-footer-nav a {
+  color: var(--cb-ink-mid);
+  transition: color 0.2s;
+}
+.cb-footer-nav a:hover { color: var(--cb-ink); }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+  .cb-hero__logo { left: 8%; width: 30%; min-width: 100px; }
+  .cb-overview { padding: 90px 24px 80px; }
+  .cb-overview__body { margin-top: 32px; }
+  .cb-overview__body p { font-size: 15px; line-height: 26px; }
+  .cb-overview__rule { margin-top: 44px; }
+  .cb-overview__img { margin-top: 40px; }
+  .cb-overview__logo { width: 160px; margin-top: 40px; }
+  .cb-flip { padding: 24px 24px 90px; }
+  .cb-flip__controls { gap: 20px; margin-top: 24px; }
+  .cb-flip__arrow { width: 36px; height: 36px; font-size: 18px; }
+  .cb-spec { padding: 0 24px 90px; }
+  .cb-spec__row { grid-template-columns: 1fr; gap: 40px; margin-bottom: 40px; }
+  .cb-spec__body { padding-top: 28px; min-height: 0; }
+  .cb-spec__tools { grid-template-columns: 1fr 1fr; gap: 20px; padding-top: 28px; }
+  .cb-footer-nav { padding: 28px 24px; flex-direction: column; gap: 16px; }
+}

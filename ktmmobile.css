@@ -1,0 +1,368 @@
+/* =====================================================
+   kt M mobile — main visual recreation
+   Hero slider (per-slide bleed colour, PC/MO art), the
+   tab strip beneath it and the event banner grid, with
+   the slider controls matched to ktmmobile.com/main.do.
+   ===================================================== */
+
+.km {
+  --km-ink: #1d1d1b;
+  --km-line: #ddd;
+  --km-col: 1260px;
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Nanum Gothic', sans-serif;
+  letter-spacing: -0.5px;
+  color: var(--km-ink);
+  word-break: keep-all;
+}
+
+/* ---------- HERO ---------- */
+.km-visual {
+  position: relative;
+  height: min(480px, 38.1vw);        /* 1260 x 480 art, scaled below 1260 */
+  overflow: hidden;
+}
+
+.km-slide {
+  position: absolute;
+  inset: 0;
+  background: var(--pc);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+.km-slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.km-slide__link {
+  display: block;
+  height: 100%;
+}
+
+.km-slide img {
+  display: block;
+  width: 100%;
+  max-width: var(--km-col);
+  height: 100%;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+/* the overlay only catches clicks on the controls, so the banner
+   underneath stays clickable */
+.km-visual__inner {
+  position: absolute;
+  inset: 0;
+  max-width: var(--km-col);
+  margin: 0 auto;
+  pointer-events: none;
+}
+
+.km-controls { pointer-events: auto; }
+
+/* the same pill as ktmmobile.com: 168x40, arrow 20x40, fraction 70px,
+   pause 20x40 with 8px before it; glyphs flip to dark on light art */
+.km-controls {
+  position: absolute;
+  left: 10px;
+  bottom: 23%;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 15px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+  z-index: 2;
+}
+
+.km-controls[data-theme="light"] {
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--km-ink);
+}
+
+.km-controls button {
+  width: 20px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.km-controls svg {
+  display: block;
+  width: 10px;
+  height: 16px;
+}
+
+.km-controls__fraction {
+  width: 70px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 18px;
+  color: inherit;
+}
+
+.km-controls__fraction .cur {
+  font-size: 18px;
+  font-weight: 500;
+  margin-right: 4px;
+}
+
+.km-controls__fraction .tot {
+  font-size: 18px;
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+.km-controls__pause {
+  margin-left: 8px;
+}
+
+.km-controls__pause .play { display: none; }
+.km-controls__pause[aria-pressed="true"] .pause { display: none; }
+.km-controls__pause[aria-pressed="true"] .play { display: block; }
+
+.c-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- TAB STRIP ---------- */
+.km-tabs {
+  border-top: 1px solid var(--km-line);
+  border-bottom: 1px solid var(--km-line);
+  background: #fff;
+}
+
+.km-tabs__inner {
+  display: flex;
+  max-width: var(--km-col);
+  margin: 0 auto;
+  height: 58px;
+}
+
+.km-tabs__all {
+  flex: 0 0 60px;
+  border: 0;
+  border-right: 1px solid var(--km-line);
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--km-ink);
+}
+
+.km-tabs__all svg { width: 18px; height: 18px; }
+
+.km-tabs__track {
+  flex: 1;
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.km-tabs__track::-webkit-scrollbar { display: none; }
+
+.km-tab {
+  position: relative;
+  flex: 0 0 300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  border: 0;
+  border-right: 1px solid var(--km-line);
+  background: none;
+  font: inherit;
+  font-size: 16px;
+  letter-spacing: -0.5px;
+  /* only the slide you are on reads at full strength */
+  color: rgba(29, 29, 27, 0.4);
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.km-tab img {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  opacity: 0.45;
+  transition: opacity 0.2s;
+}
+
+.km-tab:hover {
+  color: rgba(29, 29, 27, 0.7);
+}
+
+.km-tab:hover img {
+  opacity: 0.75;
+}
+
+.km-tab.is-active {
+  font-weight: 700;
+  color: var(--km-ink);
+}
+
+.km-tab.is-active img {
+  opacity: 1;
+}
+
+.km-tab.is-active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--km-ink);
+}
+
+/* ---------- EVENT GRID ---------- */
+.km-events {
+  max-width: var(--km-col);
+  margin: 0 auto;
+  padding: 64px 0 120px;
+  /* arriving from a detail page lands here, clear of the fixed nav */
+  scroll-margin-top: 84px;
+}
+
+.km-events__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 56px 30px;
+}
+
+.km-event {
+  display: block;
+  color: var(--km-ink);
+}
+
+.km-event img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 880 / 465;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.km-event p {
+  margin: 14px 0 0;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+/* ---------- DETAIL PAGE ---------- */
+.km-detail__body {
+  padding-top: 64px;
+  background: #fff;
+  text-align: center;
+}
+
+/* the art is drawn at 2x (1920 / 940), so it is shown at its design width */
+.km-detail__img {
+  display: block;
+  width: 100%;
+  max-width: 960px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.km-detail__foot {
+  max-width: var(--km-col);
+  margin: 0 auto;
+  padding: 48px 0 120px;
+  display: flex;
+  justify-content: center;
+}
+
+.km-detail__list {
+  padding: 13px 34px;
+  border: 1px solid var(--km-ink);
+  border-radius: 999px;
+  font-size: 16px;
+  color: var(--km-ink);
+  transition: background 0.2s, color 0.2s;
+}
+
+.km-detail__list:hover {
+  background: var(--km-ink);
+  color: #fff;
+}
+
+/* ---------- BACK TO TOP ---------- */
+.km-top {
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+  z-index: 90;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--km-ink);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.25s, transform 0.25s, visibility 0.25s, background 0.2s;
+}
+
+.km-top.is-shown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.km-top:hover { background: #fff; }
+.km-top svg { width: 18px; height: 18px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .km-top { transition: opacity 0.25s, visibility 0.25s; transform: none; }
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1320px) {
+  .km-detail__foot { padding-left: 30px; padding-right: 30px; }
+  .km-events { padding-left: 30px; padding-right: 30px; }
+  .km-tabs__inner { padding: 0 0 0 0; }
+}
+
+@media (max-width: 900px) {
+  .km-events__grid { grid-template-columns: repeat(2, 1fr); gap: 40px 20px; }
+}
+
+@media (max-width: 768px) {
+  .km-visual { height: calc(100vw * 1200 / 1125); }   /* 1125 x 1200 mobile art */
+  .km-slide { background: var(--mo); }
+  .km-controls { left: 16px; bottom: 7%; }   /* clears the ※ notice line in the MO art */
+  .km-tabs__all { flex-basis: 52px; }
+  .km-tab { flex-basis: 240px; font-size: 15px; }
+  .km-events { padding: 40px 20px 80px; }
+  .km-events__grid { grid-template-columns: 1fr; gap: 32px; }
+  .km-detail__body { padding-top: 32px; }
+  .km-detail__foot { padding: 36px 20px 80px; }
+  .km-top { right: 16px; bottom: 16px; width: 46px; height: 46px; }
+}

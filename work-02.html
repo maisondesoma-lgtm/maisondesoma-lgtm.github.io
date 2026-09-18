@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>kt M mobile — HyeRIM.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="work.css" />
+  <link rel="stylesheet" href="ktmmobile.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">
+      <span class="nav__logo-mark">HyeRIM.</span>
+      <span class="nav__logo-sub">designer</span>
+    </a>
+    <ul class="nav__links">
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <a href="index.html#work" class="nav__back mono">← Back</a>
+  </nav>
+
+  <section class="wp-hero">
+    <div class="wp-hero__inner">
+      <div class="wp-hero__meta">
+        <span class="mono muted">실무 — 02</span>
+        <span class="mono muted">2023-2026</span>
+      </div>
+      <div class="wp-hero__logo">
+        <img src="images/kt-mobile.png" alt="kt M mobile" width="2279" height="392" />
+      </div>
+      <div class="wp-hero__info">
+        <div class="wp-info-item">
+          <span class="mono muted">Category</span>
+          <span class="mono">상세페이지</span>
+        </div>
+        <div class="wp-info-item">
+          <span class="mono muted">Client</span>
+          <span class="mono">kt M mobile</span>
+        </div>
+        <div class="wp-info-item">
+          <span class="mono muted">Role</span>
+          <span class="mono">Web Designer</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="km">
+
+    <!-- ── MAIN VISUAL ── -->
+    <section class="km-visual" id="kmVisual" aria-roledescription="carousel" aria-label="메인 배너">
+      <div id="kmSlides"></div>
+      <div class="km-visual__inner">
+        <div class="km-controls" id="kmControls" data-theme="light">
+          <button type="button" class="km-controls__prev" aria-label="이전 슬라이드">
+            <svg viewBox="0 0 10 16" fill="none"><path d="M8.5 1.5 2 8l6.5 6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="km-controls__fraction" aria-live="polite"><span class="cur">1</span>/<span class="tot">12</span></div>
+          <button type="button" class="km-controls__next" aria-label="다음 슬라이드">
+            <svg viewBox="0 0 10 16" fill="none"><path d="M1.5 1.5 8 8l-6.5 6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button type="button" class="km-controls__pause" aria-pressed="false">
+            <span class="c-hidden">자동재생 정지</span>
+            <svg class="pause" viewBox="0 0 10 16" fill="currentColor"><rect x="1" y="2" width="2.6" height="12" rx="0.6"/><rect x="6.4" y="2" width="2.6" height="12" rx="0.6"/></svg>
+            <svg class="play" viewBox="0 0 10 16" fill="currentColor"><path d="M1.5 2v12l8-6z"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TAB STRIP ── -->
+    <div class="km-tabs">
+      <div class="km-tabs__inner">
+        <button type="button" class="km-tabs__all" aria-label="이벤트 모아보기">
+          <svg viewBox="0 0 18 18" fill="none"><path d="M9 1v16M1 9h16" stroke="currentColor" stroke-width="1.6"/></svg>
+        </button>
+        <div class="km-tabs__track" id="kmTabs" role="tablist"></div>
+      </div>
+    </div>
+
+    <!-- ── EVENT LIST ── -->
+    <section class="km-events" id="events">
+      <ul class="km-events__grid" id="kmGrid"></ul>
+    </section>
+
+  </div>
+
+  <section class="wp-nav-footer">
+    <a href="work-01.html" class="wp-nav-footer__back mono">← Web Design</a>
+    <a href="index.html#work" class="wp-nav-footer__next">
+      <span class="mono muted">All Work</span>
+      <span class="wp-nav-footer__next-title">View All →</span>
+    </a>
+  </section>
+
+  <script src="ktmmobile.js"></script>
+  <script>
+    (function () {
+      var IMG = KTM.IMG;
+      var events = KTM.events;
+      var slides = events.filter(function (e) { return !e.listOnly; });
+      var slidesEl = document.getElementById('kmSlides');
+      var tabsEl = document.getElementById('kmTabs');
+      var gridEl = document.getElementById('kmGrid');
+      var controls = document.getElementById('kmControls');
+      var curEl = controls.querySelector('.cur');
+      var totEl = controls.querySelector('.tot');
+      var pauseBtn = controls.querySelector('.km-controls__pause');
+
+      var mobileMq = window.matchMedia('(max-width: 768px)');
+
+      var slideEls = slides.map(function (e, i) {
+        var s = document.createElement('div');
+        s.className = 'km-slide';
+        s.style.setProperty('--pc', e.pc);
+        s.style.setProperty('--mo', e.mo);
+        s.setAttribute('role', 'group');
+        s.setAttribute('aria-roledescription', 'slide');
+        s.setAttribute('aria-label', (i + 1) + ' / ' + slides.length + ' ' + e.title);
+        var link = document.createElement('a');
+        link.className = 'km-slide__link';
+        link.href = KTM.detailUrl(e);
+        var pic = document.createElement('picture');
+        var src = document.createElement('source');
+        src.media = '(max-width: 768px)';
+        src.srcset = IMG + e.n + '-mo.' + e.ext;
+        var img = document.createElement('img');
+        img.src = IMG + e.n + '-pc.' + e.ext;
+        img.alt = e.caption;
+        if (i > 0) img.loading = 'lazy';
+        pic.appendChild(src); pic.appendChild(img);
+        link.appendChild(pic);
+        s.appendChild(link);
+        slidesEl.appendChild(s);
+        return s;
+      });
+
+      var tabEls = slides.map(function (e, i) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'km-tab';
+        b.setAttribute('role', 'tab');
+        b.innerHTML = '<p>' + e.title + '</p><img src="' + IMG + e.n + '-thumb.png" alt="">';
+        b.addEventListener('click', function () { goTo(i); restart(); });
+        tabsEl.appendChild(b);
+        return b;
+      });
+
+      events.forEach(function (e) {
+        var li = document.createElement('li');
+        li.innerHTML = '<a class="km-event" href="' + KTM.detailUrl(e) + '"><img src="' + IMG + e.n + '-list.webp" alt="" loading="lazy"><p>[' + e.cat + '] ' + e.caption + '</p></a>';
+        gridEl.appendChild(li);
+      });
+
+      var current = 0, timer = null, paused = false;
+      var INTERVAL = 4000;
+
+      totEl.textContent = slides.length;
+
+      function goTo(i) {
+        current = (i + slides.length) % slides.length;
+        slideEls.forEach(function (s, k) { s.classList.toggle('is-active', k === current); });
+        tabEls.forEach(function (t, k) {
+          t.classList.toggle('is-active', k === current);
+          t.setAttribute('aria-selected', k === current ? 'true' : 'false');
+        });
+        curEl.textContent = current + 1;
+        controls.dataset.theme = slides[current].theme;
+        // keep the active tab at the head of the strip, like the live site
+        tabsEl.scrollLeft = tabEls[current].offsetLeft - tabsEl.offsetLeft;
+      }
+
+      function start() {
+        if (paused || timer) return;
+        timer = setInterval(function () { goTo(current + 1); }, INTERVAL);
+      }
+      function stop() { clearInterval(timer); timer = null; }
+      function restart() { stop(); start(); }
+
+      controls.querySelector('.km-controls__prev').addEventListener('click', function () { goTo(current - 1); restart(); });
+      controls.querySelector('.km-controls__next').addEventListener('click', function () { goTo(current + 1); restart(); });
+      pauseBtn.addEventListener('click', function () {
+        paused = !paused;
+        pauseBtn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+        pauseBtn.querySelector('.c-hidden').textContent = paused ? '자동재생 시작' : '자동재생 정지';
+        if (paused) stop(); else start();
+      });
+
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) stop(); else start();
+      });
+
+      goTo(0);
+      start();
+      KTM.initTopButton();
+
+      // The banners and cards are built here, so the browser resolved
+      // #events against an empty page. Land on it again now it exists, and
+      // once more after the art loads, since that shifts the page under us.
+      if (location.hash === '#events') {
+        var land = function () {
+          var el = document.getElementById('events');
+          var offset = parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
+          // explicit 'auto' so the page's smooth scrolling does not animate it
+          window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - offset, behavior: 'auto' });
+        };
+        land();
+        // the art above the list has no reserved height, so the page still
+        // shifts after this point — land again once it has all arrived
+        window.addEventListener('load', function () {
+          land();
+          requestAnimationFrame(land);
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>

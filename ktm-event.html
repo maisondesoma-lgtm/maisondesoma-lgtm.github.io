@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>이벤트 — kt M mobile | HyeRIM.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="work.css" />
+  <link rel="stylesheet" href="ktmmobile.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">
+      <span class="nav__logo-mark">HyeRIM.</span>
+      <span class="nav__logo-sub">designer</span>
+    </a>
+    <ul class="nav__links">
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <a href="work-02.html" class="nav__back mono">← kt M mobile</a>
+  </nav>
+
+  <div class="km km-detail">
+    <article class="km-detail__body" id="kmBody"></article>
+
+    <nav class="km-detail__foot">
+      <a class="km-detail__list" href="work-02.html#events">목록으로</a>
+    </nav>
+  </div>
+
+  <script src="ktmmobile.js"></script>
+  <script>
+    (function () {
+      var params = new URLSearchParams(location.search);
+      var no = params.get('e') || KTM.events[0].n;
+      var ev = KTM.byNo(no) || KTM.events[0];
+      var i = KTM.events.indexOf(ev);
+
+      document.title = ev.title + ' — kt M mobile | HyeRIM.';
+
+      // one long image per event, swapped at 768px like the main banner
+      var body = document.getElementById('kmBody');
+      var pic = document.createElement('picture');
+      var src = document.createElement('source');
+      src.media = '(max-width: 768px)';
+      src.srcset = KTM.IMG + ev.n + '-detail-mo.webp';
+      var img = document.createElement('img');
+      img.className = 'km-detail__img';
+      img.src = KTM.IMG + ev.n + '-detail-pc.webp';
+      img.alt = ev.title + ' 이벤트 상세';
+      pic.appendChild(src);
+      pic.appendChild(img);
+      body.appendChild(pic);
+
+      KTM.initTopButton();
+    })();
+  </script>
+
+</body>
+</html>

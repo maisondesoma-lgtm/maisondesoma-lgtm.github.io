@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CHAEMBRE — HyeRIM.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="chaembre.css" />
+</head>
+<body class="page-chaembre">
+
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">
+      <span class="nav__logo-mark">HyeRIM.</span>
+      <span class="nav__logo-sub">designer</span>
+    </a>
+    <ul class="nav__links">
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <a href="index.html#work" class="nav__back mono">← Back</a>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="cb-hero">
+    <img class="cb-hero__img" src="images/chaembre/layout-hero.webp" alt="CHAEMBRE 향수 4종 — BLEU, VERT, ROUGE, NOIR" />
+    <img class="cb-hero__logo" src="images/chaembre/layout-hero-txt.png" alt="CHAEMBRE — Par Maison de Marie" />
+  </section>
+
+  <div class="cb-content">
+
+    <!-- ── OVERVIEW ── -->
+    <section class="cb-overview">
+      <h2 class="cb-overview__title">OVERVIEW</h2>
+      <div class="cb-overview__body">
+        <p class="cb-overview__line1">CHAEMBRE는 Maison de Marie의 내면 세계에서 태어난 향수 하우스입니다.</p>
+        <p class="cb-overview__line2">서양의 방 chambre에 동양의 채(彩)를 들여, 반쯤 열린 문틈으로 새어 나오는 감정의 색을 향으로 번역합니다.</p>
+      </div>
+      <hr class="cb-overview__rule" />
+      <img class="cb-overview__img" src="images/chaembre/layout-content-img-01.webp" alt="CHAEMBRE 향수 4종 — BLEU, ROUGE, NOIR, VERT — 과 각 방을 그린 카드" />
+      <img class="cb-overview__logo" src="images/chaembre/layout-content-logo.png" alt="CHAEMBRE — Par Maison de Marie" />
+    </section>
+
+    <!-- ── BOOK (page-flip viewer) ── -->
+    <section class="cb-flip" id="book">
+      <div class="cb-flip__stage">
+        <div class="cb-flip__stack" id="flipStack"></div>
+      </div>
+      <div class="cb-flip__controls">
+        <button type="button" class="cb-flip__arrow" data-dir="prev" aria-label="이전 페이지">‹</button>
+        <span class="cb-flip__counter mono"><span class="cb-flip__counter-cur">01</span> / <span class="cb-flip__counter-total">14</span></span>
+        <button type="button" class="cb-flip__arrow" data-dir="next" aria-label="다음 페이지">›</button>
+      </div>
+    </section>
+
+    <!-- ── SPEC ── -->
+    <section class="cb-spec">
+      <div class="cb-spec__row">
+
+        <div class="cb-spec__col">
+          <h3 class="cb-spec__label">MONOGRAM</h3>
+          <div class="cb-spec__body">
+            <img class="cb-spec__monogram" src="images/chaembre/layout-content-info-monogram-01.png" alt="CHAEMBRE 모노그램" />
+          </div>
+        </div>
+
+        <div class="cb-spec__col">
+          <h3 class="cb-spec__label">COLOR PALETTE</h3>
+          <div class="cb-spec__body cb-spec__palette">
+            <img src="images/chaembre/layout-content-info-clolor-01.png" alt="아이보리" />
+            <img src="images/chaembre/layout-content-info-clolor-02.png" alt="블랙" />
+            <img src="images/chaembre/layout-content-info-clolor-03.png" alt="골드" />
+            <img src="images/chaembre/layout-content-info-clolor-04.png" alt="네이비" />
+            <img src="images/chaembre/layout-content-info-clolor-05.png" alt="레드" />
+            <img src="images/chaembre/layout-content-info-clolor-06.png" alt="그린" />
+          </div>
+        </div>
+
+        <div class="cb-spec__col">
+          <h3 class="cb-spec__label">TYPOGRAPHY</h3>
+          <div class="cb-spec__body cb-spec__type">
+            <p class="cb-spec__face cb-spec__face--copperplate">Copperplate</p>
+            <p class="cb-spec__face cb-spec__face--helvetica">Helvetica</p>
+            <p class="cb-spec__face cb-spec__face--pretendard">프리텐다드</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="cb-spec__col cb-spec__col--tool">
+        <h3 class="cb-spec__label">TOOL</h3>
+        <ul class="cb-spec__tools">
+          <li class="cb-tool">
+            <img class="cb-tool__icon" src="images/chaembre/layout-content-info-tool-01.png" alt="Claude" />
+            <div class="cb-tool__text">
+              <strong>Claude</strong>
+              <span>브랜드 기획</span>
+              <span>코딩</span>
+            </div>
+          </li>
+          <li class="cb-tool">
+            <img class="cb-tool__icon" src="images/chaembre/layout-content-info-tool-02.png" alt="Chat GPT" />
+            <div class="cb-tool__text">
+              <strong>Chat GPT</strong>
+              <span>이미지 생성</span>
+              <span>이미지 소스 생성</span>
+            </div>
+          </li>
+          <li class="cb-tool">
+            <img class="cb-tool__icon" src="images/chaembre/layout-content-info-tool-03.png" alt="Google Flow" />
+            <div class="cb-tool__text">
+              <strong>Google Flow</strong>
+              <span>이미지 생성</span>
+              <span>영상 생성</span>
+            </div>
+          </li>
+          <li class="cb-tool">
+            <img class="cb-tool__icon" src="images/chaembre/layout-content-info-tool-04.png" alt="Photoshop" />
+            <div class="cb-tool__text">
+              <strong>Photoshop</strong>
+              <span>이미지 리터칭</span>
+              <span>페이지 작업</span>
+            </div>
+          </li>
+          <li class="cb-tool">
+            <img class="cb-tool__icon" src="images/chaembre/layout-content-info-tool-05.png" alt="Illustrator" />
+            <div class="cb-tool__text">
+              <strong>Illustrator</strong>
+              <span>로고</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="cb-footer-nav">
+    <a href="index.html#work" class="mono">← Back to Work</a>
+    <span class="mono cb-muted">© 2026 HyeRIM.</span>
+  </div>
+
+  <script>
+    (function () {
+      var IMG = 'images/chaembre/';
+
+      // Each entry is either a single whole page (cover) or a spread
+      // split into a static left half + a flipping right half.
+      function spread(n, alt) {
+        var sep = n === '13' ? '_' : '-';
+        return {
+          type: 'spread',
+          left: IMG + 'layout-content-book-' + n + sep + '01.webp',
+          right: IMG + 'layout-content-book-' + n + sep + '02.webp',
+          alt: alt
+        };
+      }
+
+      var layers = [
+        { type: 'cover', src: IMG + 'layout-content-book-01.webp', alt: 'CHAEMBRE 북 표지' },
+        spread('02', 'Chapter 01 — Blue Room'),
+        spread('03', 'BLEU 무드보드와 노트'),
+        spread('04', 'BLEU 패키지'),
+        spread('05', 'Chapter 02 — Red Room'),
+        spread('06', 'ROUGE 무드보드와 노트'),
+        spread('07', 'ROUGE 패키지'),
+        spread('08', 'Chapter 03 — Black Room'),
+        spread('09', 'NOIR 무드보드와 노트'),
+        spread('10', 'NOIR 패키지'),
+        spread('11', 'Chapter 04 — Green Room'),
+        spread('12', 'VERT 무드보드와 노트'),
+        spread('13', 'VERT 패키지'),
+        { type: 'back', src: IMG + 'layout-content-book-14.webp', alt: 'CHAEMBRE 북 뒷표지' }
+      ];
+
+      var stack = document.getElementById('flipStack');
+      var total = layers.length;
+      var current = 0;
+      var counterCur = document.querySelector('.cb-flip__counter-cur');
+      var counterTotal = document.querySelector('.cb-flip__counter-total');
+      var stage = document.querySelector('.cb-flip__stage');
+
+      counterTotal.textContent = String(total).padStart(2, '0');
+
+      function makeImg(cls, src, alt) {
+        var el = document.createElement('img');
+        el.className = cls;
+        el.src = src;
+        el.alt = alt;
+        return el;
+      }
+
+      // the left page of the page after this one — it becomes the back of
+      // the leaf you are turning, exactly as in a real book
+      function backOf(i) {
+        var next = layers[i + 1];
+        if (!next) return null;
+        return next.type === 'back' ? next.src : next.left;
+      }
+
+      // One leaf per turn. The left page is never swapped in: it is simply the
+      // back of the last leaf you turned, left lying where it landed.
+      var leaves = layers.map(function (layer, i) {
+        if (layer.type === 'back') return null;   // nothing left to turn here
+
+        var leaf = document.createElement('div');
+        leaf.className = 'cb-flip__leaf';
+
+        var isCover = layer.type === 'cover';
+        leaf.appendChild(makeImg(
+          'cb-flip__face cb-flip__face--front' + (isCover ? ' cb-flip__face--cover' : ''),
+          isCover ? layer.src : layer.right,
+          isCover ? layer.alt : layer.alt + ' (오른쪽)'
+        ));
+
+        var back = backOf(i);
+        if (back) {
+          var next = layers[i + 1];
+          leaf.appendChild(makeImg('cb-flip__face cb-flip__face--back', back,
+            next.type === 'back' ? next.alt : next.alt + ' (왼쪽)'));
+        }
+
+        stack.appendChild(leaf);
+        return leaf;
+      });
+
+      // decode up front so a page is never blank the first time it is shown
+      Array.prototype.forEach.call(stack.querySelectorAll('img'), function (img) {
+        if (img.decode) img.decode().catch(function () {});
+      });
+
+      function render(turning) {
+        leaves.forEach(function (leaf, i) {
+          if (!leaf) return;
+          var turned = i < current;
+          leaf.classList.toggle('is-flipped', turned);
+          // turned leaves pile up on the left, newest on top; the rest wait on
+          // the right, oldest on top
+          leaf.style.zIndex = turned ? 100 + i : 100 - i;
+          // only the pages you can actually see are kept rendered
+          leaf.classList.toggle('is-out', i < current - 2 || i > current + 1);
+        });
+        if (turning != null && leaves[turning]) leaves[turning].style.zIndex = 999;
+        counterCur.textContent = String(current + 1).padStart(2, '0');
+      }
+
+      // once a leaf lands, drop its lifted z-index back into the pile
+      stack.addEventListener('transitionend', function (e) {
+        if (e.propertyName === 'transform' && e.target.classList.contains('cb-flip__leaf')) render();
+      });
+
+      function goNext() {
+        if (current >= total - 1) return;
+        var turning = current;
+        current++;
+        render(turning);
+      }
+
+      function goPrev() {
+        if (current <= 0) return;
+        current--;
+        render(current);
+      }
+
+      render();
+
+      document.querySelectorAll('.cb-flip__arrow').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          if (btn.dataset.dir === 'next') goNext(); else goPrev();
+        });
+      });
+
+      stage.addEventListener('click', goNext);
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight') goNext();
+        if (e.key === 'ArrowLeft') goPrev();
+      });
+    })();
+
+    // palette marks spin clockwise while hovered
+    (function () {
+      var SPIN_MS = 1100;
+
+      function angleOf(el) {
+        var t = getComputedStyle(el).transform;
+        if (!t || t === 'none') return 0;
+        var m = t.match(/matrix\(([^)]+)\)/);
+        if (!m) return 0;
+        var v = m[1].split(',').map(Number);
+        return (Math.atan2(v[1], v[0]) * 180 / Math.PI + 360) % 360;
+      }
+
+      Array.prototype.forEach.call(document.querySelectorAll('.cb-spec__palette img'), function (mark) {
+        mark.addEventListener('mouseenter', function () {
+          var from = angleOf(mark);
+          mark.classList.remove('is-settling');
+          mark.style.transition = '';
+          mark.style.transform = '';
+          // pick the spin up where the last one stopped
+          mark.style.animationDelay = '-' + (from / 360 * SPIN_MS) + 'ms';
+          mark.classList.add('is-spinning');
+        });
+
+        mark.addEventListener('mouseleave', function () {
+          var from = angleOf(mark);
+          mark.classList.remove('is-spinning');
+          mark.style.animationDelay = '';
+          mark.style.transform = 'rotate(' + from + 'deg)';
+          void mark.offsetWidth;                       // commit the held angle
+          mark.style.transition = 'transform ' + Math.round((360 - from) / 360 * SPIN_MS) + 'ms ease-out';
+          mark.classList.add('is-settling');
+          mark.style.transform = 'rotate(360deg)';     // finish the turn, upright
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

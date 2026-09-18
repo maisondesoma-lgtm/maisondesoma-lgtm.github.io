@@ -1,0 +1,203 @@
+/* =====================================================
+   MAISON DE MARIE — AI graphics
+   Dark gallery page: poster + text card pairs, a short
+   welcome, and the tools it was made with.
+   ===================================================== */
+
+body.page-aig {
+  --ag-bg:      #0a0a0a;
+  --ag-ink:     #ffffff;
+  --ag-ink-mid: rgba(255, 255, 255, 0.72);
+  --ag-ink-dim: rgba(255, 255, 255, 0.45);
+  --ag-rule:    rgba(255, 255, 255, 0.35);
+  --ag-serif:   'Playfair Display', Georgia, serif;
+
+  background: var(--ag-bg);
+  color: var(--ag-ink);
+  font-family: 'Pretendard', sans-serif;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+body.page-aig .nav {
+  background: var(--ag-bg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+body.page-aig .nav__logo-mark,
+body.page-aig .nav__logo-sub { color: var(--ag-ink); }
+body.page-aig .nav__links a { color: var(--ag-ink-dim); }
+body.page-aig .nav__links a:hover { color: var(--ag-ink); }
+body.page-aig .nav__back { color: var(--ag-ink-dim); transition: color 0.2s; }
+body.page-aig .nav__back:hover { color: var(--ag-ink); }
+
+.ag-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ---------- ROOMS: poster + card ---------- */
+.ag-rooms {
+  padding-top: 130px;
+}
+
+.ag-room {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: stretch;
+}
+
+.ag-room + .ag-room {
+  margin-top: 48px;
+}
+
+.ag-room__poster {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* the card keeps the poster's proportions; title sits at 43% of its
+   height, body at 70%, as in the layout */
+.ag-room__card {
+  position: relative;
+  aspect-ratio: 578 / 870;
+  container-type: size;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  text-align: center;
+}
+
+.ag-room__title {
+  position: absolute;
+  top: 43%;
+  left: 40px;
+  right: 40px;
+  transform: translateY(-50%);
+  font-size: 15px;
+  font-size: clamp(12px, 2cqh, 15px);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ag-ink);
+}
+
+/* type scales with the card so the longest room (six lines) always ends
+   just inside the border, as it does in the layout */
+.ag-room__text {
+  position: absolute;
+  top: 68%;
+  left: 40px;
+  right: 40px;
+  font-size: 13px;
+  font-size: clamp(11px, 1.75cqh, 13px);
+  line-height: 28px;
+  line-height: 3.8cqh;
+  color: var(--ag-ink-mid);
+}
+
+.ag-room__text p + p {
+  margin-top: 20px;
+  margin-top: 2.7cqh;
+}
+
+/* ---------- RULE ---------- */
+.ag-rule {
+  border: 0;
+  border-top: 1px solid var(--ag-rule);
+  margin: 0;
+}
+
+.ag-rule--after-rooms { margin-top: 128px; }
+.ag-rule--after-note  { margin-top: 96px; }
+
+/* ---------- WELCOME ---------- */
+.ag-note {
+  padding-top: 104px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 35px;
+  color: var(--ag-ink-mid);
+}
+
+.ag-note__salut {
+  display: block;
+  margin-top: 26px;
+  font-family: var(--ag-serif);
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  color: var(--ag-ink);
+}
+
+.ag-note__date {
+  margin-top: 84px;
+  color: var(--ag-ink);
+}
+
+.ag-note__logo {
+  display: block;
+  width: 250px;
+  height: auto;
+  margin: 28px auto 0;
+}
+
+/* ---------- ABOUT + TOOLS ---------- */
+.ag-about {
+  padding: 52px 0 160px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 35px;
+  color: var(--ag-ink);
+}
+
+.ag-about__tools {
+  list-style: none;
+  margin: 56px 0 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.ag-about__tools img {
+  display: block;
+  width: 100px;
+  height: 100px;
+}
+
+/* ---------- FOOTER NAV ---------- */
+.ag-footer-nav {
+  padding: 40px 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--ag-ink-dim);
+}
+
+.ag-footer-nav a {
+  color: var(--ag-ink-dim);
+  transition: color 0.2s;
+}
+.ag-footer-nav a:hover { color: var(--ag-ink); }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+  .ag-container { padding: 0 24px; }
+  .ag-rooms { padding-top: 96px; }
+  .ag-room { grid-template-columns: 1fr; gap: 24px; }
+  .ag-room + .ag-room { margin-top: 64px; }
+  .ag-room__card { aspect-ratio: auto; padding: 64px 28px; }
+  .ag-room__title,
+  .ag-room__text { position: static; transform: none; }
+  .ag-room__text { margin-top: 48px; }
+  .ag-rule--after-rooms { margin-top: 80px; }
+  .ag-rule--after-note  { margin-top: 64px; }
+  .ag-note { padding-top: 64px; line-height: 30px; }
+  .ag-note__date { margin-top: 56px; }
+  .ag-note__logo { width: 200px; }
+  .ag-about { padding: 40px 0 100px; line-height: 30px; }
+  .ag-about__tools { gap: 20px; margin-top: 40px; }
+  .ag-about__tools img { width: 72px; height: 72px; }
+  .ag-footer-nav { padding: 28px 24px; flex-direction: column; gap: 16px; }
+}
