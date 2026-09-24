@@ -8,10 +8,13 @@
 - 호스팅·DNS·도메인 관리: Vercel
 - Vercel 계정: `BlancoRicecake's projects`
 - 요금제: Hobby
-- 저장소: `maisondesoma-lgtm/maisondesoma-lgtm.github.io`
+- 원본 저장소: `maisondesoma-lgtm/maisondesoma-lgtm.github.io`
+- Vercel 배포 저장소: `BlancoRicecake/hyerim-portfolio` (private)
 - Production Branch: `main`
 - 준비 브랜치: `codex/custom-domain-setup`
-- 권장 프로젝트 이름: `hyerim-portfolio`
+- 프로젝트 이름: `hyerim-portfolio`
+- 현재 Production: <https://hyerim-portfolio-pearl.vercel.app/>
+- 2026-09-24 Vercel 등록가: 첫해 `$11.25`, 갱신 `$11.25/년`
 
 `portfolio_janghyerim.com`처럼 밑줄이 들어간 주소는 웹 호스트명으로 사용할
 수 없으므로 하이픈을 사용한다.
@@ -28,6 +31,9 @@ GitHub Pages 전용 `CNAME`은 사용하지 않는다. 도메인은 Vercel 프�
 **Settings → Domains**에서 관리한다.
 
 ## Vercel 프로젝트 만들기
+
+프로젝트와 배포용 비공개 저장소는 생성 완료됐다. 아래 값은 재구성 또는
+장애 복구 시 사용한다.
 
 1. Vercel 대시보드에서 **Add New → Project**를 연다.
 2. GitHub App 권한에 `maisondesoma-lgtm/maisondesoma-lgtm.github.io`를
@@ -60,11 +66,14 @@ GitHub Pages 전용 `CNAME`은 사용하지 않는다. 도메인은 Vercel 프�
 Vercel에서 도메인을 구매하면 네임서버와 기본 DNS가 자동 구성된다. 별도의
 Cloudflare 계정이나 GitHub Pages A/AAAA 레코드는 필요 없다.
 
+현재 결제 화면의 예상 세금은 `$0.00`, 합계는 `$11.25`다. 도메인은 환불되지
+않으므로 철자와 등록자 정보를 결제 직전에 다시 확인한다.
+
 ## 배포 순서
 
-1. 현재 `main`을 Vercel에 배포해 기본 `.vercel.app` 주소를 만든다.
-2. `codex/custom-domain-setup`의 Preview Deployment를 확인한다.
-3. 데스크톱·모바일 화면과 12개 HTML 페이지를 검증한다.
+1. 현재 `main`을 Vercel에 배포해 기본 `.vercel.app` 주소를 만든다. (완료)
+2. `codex/custom-domain-setup`의 Preview Deployment를 확인한다. (완료)
+3. 공개 Preview의 12개 HTML 페이지와 사이트 파일을 검증한다. (완료)
 4. 도메인을 구매하고 프로젝트에 연결한다.
 5. 준비 PR을 `main`에 병합한다.
 6. 새 Production Deployment가 성공하면 대표 도메인을 최종 확인한다.

@@ -4,8 +4,10 @@
 
 - 기존 공개 주소: <https://maisondesoma-lgtm.github.io/>
 - 연결 예정 주소: <https://www.portfolio-janghyerim.com/>
+- Vercel Production: <https://hyerim-portfolio-pearl.vercel.app/>
 - 배포 방식: Vercel Hobby + GitHub 자동 배포
-- 게시 소스: `main` 브랜치 루트
+- 배포 저장소: `BlancoRicecake/hyerim-portfolio`
+- 게시 소스: 배포 저장소 `main` 브랜치 루트
 - 빌드 단계: 없음
 - HTTPS: 활성화
 
