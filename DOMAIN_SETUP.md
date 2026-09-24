@@ -2,7 +2,7 @@
 
 ## 확정 구성
 
-- 구매할 도메인: `portfolio-janghyerim.com`
+- 등록 도메인: `portfolio-janghyerim.com`
 - 대표 주소: <https://www.portfolio-janghyerim.com/>
 - 루트 주소: <https://portfolio-janghyerim.com/> → 대표 주소로 이동
 - 호스팅·DNS·도메인 관리: Vercel
@@ -14,7 +14,10 @@
 - 준비 브랜치: `codex/custom-domain-setup`
 - 프로젝트 이름: `hyerim-portfolio`
 - 현재 Production: <https://hyerim-portfolio-pearl.vercel.app/>
-- 2026-09-24 Vercel 등록가: 첫해 `$11.25`, 갱신 `$11.25/년`
+- 등록 완료: 2026-09-24
+- 만료일: 2027-09-24
+- 결제액: 등록가 `$11.25` + 세금 `$1.13` = 총 `$12.38`
+- 자동 갱신: 사용 중, 갱신가 `$11.25/년` + 적용 세금
 
 `portfolio_janghyerim.com`처럼 밑줄이 들어간 주소는 웹 호스트명으로 사용할
 수 없으므로 하이픈을 사용한다.
@@ -55,6 +58,8 @@ GitHub Pages 전용 `CNAME`은 사용하지 않는다. 도메인은 Vercel 프�
 
 ## 도메인 구매와 연결
 
+아래 절차는 2026-09-24에 완료됐다.
+
 1. Vercel의 **Domains**에서 `portfolio-janghyerim.com`을 검색한다.
 2. 등록 가능 여부, 첫해 가격, 갱신 가격, 자동 갱신 조건을 확인한다.
 3. 결제와 등록자 연락처 입력을 완료한다.
@@ -66,17 +71,17 @@ GitHub Pages 전용 `CNAME`은 사용하지 않는다. 도메인은 Vercel 프�
 Vercel에서 도메인을 구매하면 네임서버와 기본 DNS가 자동 구성된다. 별도의
 Cloudflare 계정이나 GitHub Pages A/AAAA 레코드는 필요 없다.
 
-현재 결제 화면의 예상 세금은 `$0.00`, 합계는 `$11.25`다. 도메인은 환불되지
-않으므로 철자와 등록자 정보를 결제 직전에 다시 확인한다.
-
 ## 배포 순서
 
 1. 현재 `main`을 Vercel에 배포해 기본 `.vercel.app` 주소를 만든다. (완료)
 2. `codex/custom-domain-setup`의 Preview Deployment를 확인한다. (완료)
 3. 공개 Preview의 12개 HTML 페이지와 사이트 파일을 검증한다. (완료)
-4. 도메인을 구매하고 프로젝트에 연결한다.
-5. 준비 PR을 `main`에 병합한다.
-6. 새 Production Deployment가 성공하면 대표 도메인을 최종 확인한다.
+4. 도메인을 구매하고 프로젝트에 연결한다. (완료)
+5. 검증된 사이트 트리를 Vercel 배포 저장소 `main`에 반영한다. (완료)
+6. 새 Production Deployment와 대표 도메인을 최종 확인한다. (완료)
+
+원본 저장소에는 준비 변경을 담은 PR을 유지하고, 실제 Production은 비공개
+배포 저장소의 `main`에서 운영한다.
 
 ## 최종 검증
 
@@ -94,6 +99,14 @@ curl.exe -I https://portfolio-janghyerim.com/
 - 루트 주소가 `www` 대표 주소로 이동
 - 12개 HTML 페이지와 이미지가 정상 표시
 - PR 푸시마다 Preview Deployment가 생성
+
+2026-09-24 최종 확인 결과:
+
+- Vercel Domains: 루트와 `www` 모두 **Valid Configuration**
+- `https://portfolio-janghyerim.com/`: **308 Permanent Redirect**
+- `https://www.portfolio-janghyerim.com/`: **200 OK**
+- HTML 12개, `robots.txt`, `sitemap.xml`: 모두 **200 OK**
+- canonical 주소, HTTPS, HSTS, `nosniff`, Referrer Policy: 정상
 
 ## 운영 메모
 

@@ -3,7 +3,7 @@
 장혜림의 정적 포트폴리오 사이트입니다.
 
 - 기존 공개 주소: <https://maisondesoma-lgtm.github.io/>
-- 연결 예정 주소: <https://www.portfolio-janghyerim.com/>
+- 대표 주소: <https://www.portfolio-janghyerim.com/>
 - Vercel Production: <https://hyerim-portfolio-pearl.vercel.app/>
 - 배포 방식: Vercel Hobby + GitHub 자동 배포
 - 배포 저장소: `BlancoRicecake/hyerim-portfolio`
@@ -25,5 +25,6 @@ npx --yes serve@14 . -l 4173
 
 Vercel 프로젝트·도메인 연결 절차는 [DOMAIN_SETUP.md](DOMAIN_SETUP.md)를
 따릅니다.
-대표 주소는 `www.portfolio-janghyerim.com`으로 준비되어 있습니다. 도메인
-구매와 Vercel 미리보기 검증이 끝난 뒤 이 브랜치를 `main`에 반영합니다.
+대표 주소는 `www.portfolio-janghyerim.com`이며, 루트 도메인은 대표 주소로
+영구 리디렉션됩니다. 도메인 구매·연결과 Vercel Production 배포를
+2026-09-24에 완료했습니다.
