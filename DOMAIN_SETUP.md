@@ -83,6 +83,26 @@ Cloudflare 계정이나 GitHub Pages A/AAAA 레코드는 필요 없다.
 원본 저장소에는 준비 변경을 담은 PR을 유지하고, 실제 Production은 비공개
 배포 저장소의 `main`에서 운영한다.
 
+## Git 자동 배포 구성
+
+2026-09-24 Vercel 프로젝트 설정에서 다음 구성을 확인했다.
+
+| 항목 | 설정 |
+|---|---|
+| Connected Git Repository | `BlancoRicecake/hyerim-portfolio` |
+| Production Branch | `main` |
+| Preview Branches | Production에 지정되지 않은 나머지 브랜치 |
+| Pull Request Comments | 사용 |
+| Commit Status | 사용 |
+
+배포 저장소의 `main`에 커밋을 푸시하면 Vercel Production Deployment가
+자동 생성되고 대표 도메인에 반영된다. 다른 브랜치에 푸시하면 검토용 Preview
+Deployment가 생성된다.
+
+이 컴퓨터의 표준 배포 작업 폴더는
+`C:\dev\Handy_code\hyerim-portfolio`이며, 로컬 `main`은 원격
+`origin/main`을 추적한다.
+
 ## 최종 검증
 
 ```powershell
