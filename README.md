@@ -5,9 +5,9 @@
 - 기존 공개 주소: <https://maisondesoma-lgtm.github.io/>
 - 대표 주소: <https://www.portfolio-janghyerim.com/>
 - Vercel Production: <https://hyerim-portfolio-pearl.vercel.app/>
-- 배포 방식: Vercel Hobby + GitHub 자동 배포
-- 배포 저장소: `BlancoRicecake/hyerim-portfolio`
-- 게시 소스: 배포 저장소 `main` 브랜치 루트
+- 배포 방식: GitHub Actions → 기존 Vercel 프로젝트 자동 배포
+- 작업·배포 저장소: `maisondesoma-lgtm/maisondesoma-lgtm.github.io`
+- 게시 소스: 이 저장소의 `main` 브랜치 루트
 - 빌드 단계: 없음
 - HTTPS: 활성화
 
@@ -31,13 +31,17 @@ Vercel 프로젝트·도메인 연결 절차는 [DOMAIN_SETUP.md](DOMAIN_SETUP.m
 
 ## 자동 배포
 
-Vercel 배포 저장소 `BlancoRicecake/hyerim-portfolio`는 Vercel 프로젝트
-`hyerim-portfolio`에 연결되어 있습니다.
+이 저장소의 `main`에 푸시하거나 GitHub 웹에서 파일을 수정하면
+[Deploy portfolio to Vercel](https://github.com/maisondesoma-lgtm/maisondesoma-lgtm.github.io/actions/workflows/deploy-vercel.yml)이
+기존 Vercel 프로젝트 `hyerim-portfolio`에 Production 배포합니다.
+다른 저장소로 복사하거나 Vercel에서 수동 배포할 필요가 없습니다.
 
-- 배포 저장소 `main` 푸시: Production 자동 배포
-- 배포 저장소의 그 외 브랜치 푸시: Preview 자동 배포
-- Production 대표 주소: <https://www.portfolio-janghyerim.com/>
+1. 이 저장소에서 파일을 수정하고 `main`에 커밋·푸시합니다.
+2. **Actions → Deploy portfolio to Vercel**의 실행 결과를 확인합니다.
+3. <https://www.portfolio-janghyerim.com/>에서 확인합니다.
 
-표준 배포 작업 폴더는 `C:\dev\Handy_code\hyerim-portfolio`입니다. 해당
-폴더에서 `git pull`, 커밋, `git push` 순서로 작업하면 별도의 Vercel 수동
-배포 명령 없이 사이트가 갱신됩니다.
+GitHub Pages 작업의 성공 여부는 커스텀 도메인의 Vercel 배포와 별개입니다.
+Vercel 배포 작업은 실제 도메인의 `proj-05.html`이 해당 커밋과 같은지도 검사합니다.
+실패했을 때는 해당 실행의 실패한 단계를 확인하고 **Re-run jobs**로 재시도합니다.
+
+배포 설정과 인증 관리는 [DOMAIN_SETUP.md](DOMAIN_SETUP.md)를 참고하세요.

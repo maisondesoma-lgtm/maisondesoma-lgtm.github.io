@@ -1,0 +1,59 @@
+name: Deploy portfolio to Vercel
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portfolio-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      VERCEL_ORG_ID: team_lwcMOed4XZsuFuJw8oMO9K90
+      VERCEL_PROJECT_ID: prj_zkzgSExmeZzKtLXmLhPiMhya1vmm
+    steps:
+      - name: Check out the pushed commit
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+      - name: Install Vercel CLI
+        run: npm install --global vercel@60.1.3
+      - name: Load production project settings
+        env:
+          VERCEL_TOKEN: ${{ secrets.PORTFOLIO_VERCEL_TOKEN }}
+        run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+      - name: Build the portfolio
+        env:
+          VERCEL_TOKEN: ${{ secrets.PORTFOLIO_VERCEL_TOKEN }}
+        run: vercel build --prod --token="$VERCEL_TOKEN"
+      - name: Deploy production
+        env:
+          VERCEL_TOKEN: ${{ secrets.PORTFOLIO_VERCEL_TOKEN }}
+        run: |
+          vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN" > deployment-url.txt
+          printf '### Portfolio deployed\n\nCommit: `%s`\n\nDeployment: %s\n\nWebsite: https://www.portfolio-janghyerim.com/\n' "$GITHUB_SHA" "$(cat deployment-url.txt)" >> "$GITHUB_STEP_SUMMARY"
+      - name: Verify the live project page matches this commit
+        shell: bash
+        run: |
+          for attempt in {1..12}; do
+            if curl --fail --silent --show-error --location "https://www.portfolio-janghyerim.com/proj-05.html?deploy=$GITHUB_SHA" -o /tmp/live-proj-05.html && cmp --silent proj-05.html /tmp/live-proj-05.html; then
+              echo 'Live proj-05.html matches the pushed commit.'
+              exit 0
+            fi
+            sleep 5
+          done
+          echo 'The live project page does not match this commit.' >&2
+          exit 1

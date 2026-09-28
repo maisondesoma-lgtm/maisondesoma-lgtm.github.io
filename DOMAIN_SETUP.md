@@ -1,137 +1,64 @@
-# portfolio-janghyerim.com Vercel 배포
+# portfolio-janghyerim.com 배포 운영
 
-## 확정 구성
+## 작업 및 자동배포
 
-- 등록 도메인: `portfolio-janghyerim.com`
+- 작업 저장소: `maisondesoma-lgtm/maisondesoma-lgtm.github.io`
+- Production 브랜치: `main`
+- 워크플로: `.github/workflows/deploy-vercel.yml`
+- 트리거: `main` 푸시 또는 Actions 화면의 **Run workflow**
+- Vercel 프로젝트: `hyerim-portfolio`
+- 프로젝트 ID: `prj_zkzgSExmeZzKtLXmLhPiMhya1vmm`
+- Vercel 팀: `BlancoRicecake's projects`
 - 대표 주소: <https://www.portfolio-janghyerim.com/>
-- 루트 주소: <https://portfolio-janghyerim.com/> → 대표 주소로 이동
-- 호스팅·DNS·도메인 관리: Vercel
-- Vercel 계정: `BlancoRicecake's projects`
-- 요금제: Hobby
-- 원본 저장소: `maisondesoma-lgtm/maisondesoma-lgtm.github.io`
-- Vercel 배포 저장소: `BlancoRicecake/hyerim-portfolio` (private)
-- Production Branch: `main`
-- 준비 브랜치: `codex/custom-domain-setup`
-- 프로젝트 이름: `hyerim-portfolio`
-- 현재 Production: <https://hyerim-portfolio-pearl.vercel.app/>
+- 루트 주소: <https://portfolio-janghyerim.com/> → 대표 주소로 리디렉션
+- 기본 주소: <https://hyerim-portfolio-pearl.vercel.app/>
+
+지인과 공동작업자는 이 저장소에서 계속 작업합니다. `main`에 반영하면
+GitHub Actions가 Vercel CLI로 Production 설정을 가져오고, 정적 사이트를
+빌드·배포합니다. 배포 뒤 실제 도메인의 `proj-05.html`을 커밋 파일과 비교합니다.
+한 번에 한 배포만 실행하며, 진행 중인 Production 배포를 중간에 취소하지 않습니다.
+
+브랜치나 외부 PR에는 Production 자동배포가 실행되지 않습니다.
+Vercel의 Git 연결을 다시 설정하거나 별도 복제 저장소로 푸시하지 마세요.
+GitHub Pages 워크플로와 이 Vercel 배포 워크플로는 별개입니다.
+
+## 인증
+
+GitHub **Settings → Secrets and variables → Actions**의
+`PORTFOLIO_VERCEL_TOKEN`이 Vercel 인증에 사용됩니다.
+이 토큰은 `hyerim-portfolio` 프로젝트에만 접근하도록 제한되어 있으며,
+토큰 값을 저장소 파일이나 로그에 기록하지 않습니다.
+
+토큰을 폐기하거나 교체할 경우 Vercel 계정의 Tokens에서 같은 프로젝트
+범위로 발급한 뒤 GitHub Secret을 갱신합니다. 인증 실패가 나면 이 Secret과
+토큰의 유효성을 확인합니다. 기존 CLI 로그인 토큰을 대신 공유하지 않습니다.
+
+## 배포 확인과 복구
+
+1. GitHub **Actions → Deploy portfolio to Vercel**에서 최신 `main` 커밋의
+   실행이 성공했는지 확인합니다. 실행 요약에 배포 주소와 커밋이 표시됩니다.
+2. <https://www.portfolio-janghyerim.com/proj-05.html>에서 수정 사항을 확인합니다.
+3. 실패 시 실패한 단계의 로그를 확인합니다. 인증 문제를 고친 뒤에는
+   **Re-run jobs** 또는 **Run workflow**로 배포를 재실행할 수 있습니다.
+4. 배포 내용을 되돌려야 하면 GitHub에서 해당 코드 변경을 revert하여
+   `main`에 반영합니다. 동일한 자동배포 경로로 복구됩니다.
+
+## 도메인 및 결제
+
+도메인과 기존 Vercel 프로젝트는 계속 `BlancoRicecake's projects`에서 관리합니다.
+새 도메인을 구매하거나 추가 유료 요금제로 변경할 필요가 없습니다.
+
 - 등록 완료: 2026-09-24
-- 만료일: 2027-09-24
-- 결제액: 등록가 `$11.25` + 세금 `$1.13` = 총 `$12.38`
-- 자동 갱신: 사용 중, 갱신가 `$11.25/년` + 적용 세금
+- 기록된 만료일: 2027-09-24
+- 등록 당시 결제: $11.25 + 세금 $1.13 = $12.38
+- 등록 당시 자동 갱신: 사용 중
 
-`portfolio_janghyerim.com`처럼 밑줄이 들어간 주소는 웹 호스트명으로 사용할
-수 없으므로 하이픈을 사용한다.
+등록·갱신 상태는 Vercel Domains에서 확인합니다. DNS와 HTTPS 구성은 기존
+Vercel 설정을 사용하며, GitHub Pages 전용 `CNAME`은 추가하지 않습니다.
 
-## 저장소 준비 상태
+## 이전 구성
 
-- 모든 HTML 페이지: canonical, description, Open Graph, X/Twitter 메타데이터
-- `robots.txt`: 검색 허용 및 사이트맵 주소
-- `sitemap.xml`: 공개 HTML 12개 주소
-- `vercel.json`: 공통 보안 응답 헤더
-- `.nojekyll`: GitHub Pages 기존 주소와의 호환을 위해 유지
-
-GitHub Pages 전용 `CNAME`은 사용하지 않는다. 도메인은 Vercel 프로젝트의
-**Settings → Domains**에서 관리한다.
-
-## Vercel 프로젝트 만들기
-
-프로젝트와 배포용 비공개 저장소는 생성 완료됐다. 아래 값은 재구성 또는
-장애 복구 시 사용한다.
-
-1. Vercel 대시보드에서 **Add New → Project**를 연다.
-2. GitHub App 권한에 `maisondesoma-lgtm/maisondesoma-lgtm.github.io`를
-   추가한다.
-3. 저장소의 **Import**를 선택한다.
-4. 다음 설정으로 배포한다.
-
-| 설정 | 값 |
-|---|---|
-| Project Name | `hyerim-portfolio` |
-| Framework Preset | Other |
-| Root Directory | `.` |
-| Build Command | 비움 |
-| Output Directory | 비움 |
-| Install Command | 비움 |
-| Production Branch | `main` |
-
-정적 HTML/CSS/JavaScript 사이트이므로 환경 변수나 빌드 단계가 필요 없다.
-
-## 도메인 구매와 연결
-
-아래 절차는 2026-09-24에 완료됐다.
-
-1. Vercel의 **Domains**에서 `portfolio-janghyerim.com`을 검색한다.
-2. 등록 가능 여부, 첫해 가격, 갱신 가격, 자동 갱신 조건을 확인한다.
-3. 결제와 등록자 연락처 입력을 완료한다.
-4. `hyerim-portfolio` 프로젝트의 **Settings → Domains**에 루트 도메인과
-   `www`를 연결한다.
-5. `www.portfolio-janghyerim.com`을 Primary로 정한다.
-6. 루트 도메인은 `www`로 영구 리디렉션한다.
-
-Vercel에서 도메인을 구매하면 네임서버와 기본 DNS가 자동 구성된다. 별도의
-Cloudflare 계정이나 GitHub Pages A/AAAA 레코드는 필요 없다.
-
-## 배포 순서
-
-1. 현재 `main`을 Vercel에 배포해 기본 `.vercel.app` 주소를 만든다. (완료)
-2. `codex/custom-domain-setup`의 Preview Deployment를 확인한다. (완료)
-3. 공개 Preview의 12개 HTML 페이지와 사이트 파일을 검증한다. (완료)
-4. 도메인을 구매하고 프로젝트에 연결한다. (완료)
-5. 검증된 사이트 트리를 Vercel 배포 저장소 `main`에 반영한다. (완료)
-6. 새 Production Deployment와 대표 도메인을 최종 확인한다. (완료)
-
-원본 저장소에는 준비 변경을 담은 PR을 유지하고, 실제 Production은 비공개
-배포 저장소의 `main`에서 운영한다.
-
-## Git 자동 배포 구성
-
-2026-09-24 Vercel 프로젝트 설정에서 다음 구성을 확인했다.
-
-| 항목 | 설정 |
-|---|---|
-| Connected Git Repository | `BlancoRicecake/hyerim-portfolio` |
-| Production Branch | `main` |
-| Preview Branches | Production에 지정되지 않은 나머지 브랜치 |
-| Pull Request Comments | 사용 |
-| Commit Status | 사용 |
-
-배포 저장소의 `main`에 커밋을 푸시하면 Vercel Production Deployment가
-자동 생성되고 대표 도메인에 반영된다. 다른 브랜치에 푸시하면 검토용 Preview
-Deployment가 생성된다.
-
-이 컴퓨터의 표준 배포 작업 폴더는
-`C:\dev\Handy_code\hyerim-portfolio`이며, 로컬 `main`은 원격
-`origin/main`을 추적한다.
-
-## 최종 검증
-
-```powershell
-Resolve-DnsName portfolio-janghyerim.com
-Resolve-DnsName www.portfolio-janghyerim.com
-curl.exe -I https://www.portfolio-janghyerim.com/
-curl.exe -I https://portfolio-janghyerim.com/
-```
-
-기대 결과:
-
-- 루트와 `www` 모두 Vercel에서 Valid Configuration으로 표시
-- 두 주소 모두 HTTPS로 열림
-- 루트 주소가 `www` 대표 주소로 이동
-- 12개 HTML 페이지와 이미지가 정상 표시
-- PR 푸시마다 Preview Deployment가 생성
-
-2026-09-24 최종 확인 결과:
-
-- Vercel Domains: 루트와 `www` 모두 **Valid Configuration**
-- `https://portfolio-janghyerim.com/`: **308 Permanent Redirect**
-- `https://www.portfolio-janghyerim.com/`: **200 OK**
-- HTML 12개, `robots.txt`, `sitemap.xml`: 모두 **200 OK**
-- canonical 주소, HTTPS, HSTS, `nosniff`, Referrer Policy: 정상
-
-## 운영 메모
-
-- 도메인과 프로젝트는 현재 Vercel 계정 소유자가 관리한다.
-- 등록자 이메일은 만료·갱신 알림을 확인할 수 있는 주소를 사용한다.
-- 자동 갱신과 결제 수단을 정기적으로 확인한다.
-- Hobby 사용량이 한도를 넘으면 추가 과금보다 사이트가 일시 중지될 수 있으므로
-  Vercel Usage 화면을 확인한다.
+2026-09-24에는 별도 `BlancoRicecake/hyerim-portfolio` 저장소의 `main`만
+Vercel Git 자동배포에 연결되어 있었습니다. 원래 작업 저장소의 변경은
+전달되지 않아 2026-09-28에 이 저장소의 GitHub Actions 배포로 전환합니다.
+별도 저장소는 이 자동배포의 입력이나 의존성이 아닙니다.
