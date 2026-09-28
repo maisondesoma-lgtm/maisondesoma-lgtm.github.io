@@ -86,14 +86,51 @@
     </div>
   </section>
 
-  <section class="wp-images">
-    <div class="wp-image wp-image--full"><span class="mono muted">[ Image 01 ]</span></div>
-    <div class="wp-image-row">
-      <div class="wp-image wp-image--half"><span class="mono muted">[ Image 02 ]</span></div>
-      <div class="wp-image wp-image--half"><span class="mono muted">[ Image 03 ]</span></div>
+  <section class="wp-acc">
+  <div class="wp-acc__item is-open">
+    <button class="wp-acc__head" type="button" aria-expanded="true" aria-controls="accPanel01">
+      <span class="wp-acc__name">Main</span>
+      <span class="wp-acc__icon" aria-hidden="true">
+        <svg viewBox="0 0 18 18" fill="none">
+          <path d="M4 6.5 9 11.5 14 6.5"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </button>
+
+    <div class="wp-acc__panel" id="accPanel01">
+      <div>
+        <img src="images/p06-pc-01.webp" alt="팜아트홀릭 — 메인" />
+      </div>
     </div>
-    <div class="wp-image wp-image--full"><span class="mono muted">[ Image 04 ]</span></div>
-  </section>
+  </div>
+
+  <div class="wp-acc__item">
+    <button class="wp-acc__head" type="button" aria-expanded="false" aria-controls="accPanel02">
+      <span class="wp-acc__name">Sub_01</span>
+      <span class="wp-acc__icon" aria-hidden="true">
+        <svg viewBox="0 0 18 18" fill="none">
+          <path d="M4 6.5 9 11.5 14 6.5"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </button>
+
+    <div class="wp-acc__panel" id="accPanel02">
+      <div>
+        <img src="images/p06-pc-02.webp" alt="팜아트홀릭 — 서브" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="work-acc.js"></script>
 
   <section class="wp-nav-footer">
     <a href="proj-05.html" class="wp-nav-footer__back mono">← 베리모먼트</a>
