@@ -14,8 +14,9 @@
 - 기본 주소: <https://hyerim-portfolio-pearl.vercel.app/>
 
 지인과 공동작업자는 이 저장소에서 계속 작업합니다. `main`에 반영하면
-GitHub Actions가 Vercel CLI로 Production 설정을 가져오고, 정적 사이트를
-빌드·배포합니다. 배포 뒤 실제 도메인의 `proj-05.html`을 커밋 파일과 비교합니다.
+GitHub Actions가 Vercel 공식 API로 정적 사이트를 업로드·배포합니다.
+프로젝트 전용 토큰이 불필요한 계정 조회 권한을 요구받지 않도록 CLI를 사용하지 않습니다.
+배포 뒤 실제 도메인의 HTML, `work-acc.js`, `work.css`를 커밋 파일과 비교합니다.
 한 번에 한 배포만 실행하며, 진행 중인 Production 배포를 중간에 취소하지 않습니다.
 
 브랜치나 외부 PR에는 Production 자동배포가 실행되지 않습니다.
