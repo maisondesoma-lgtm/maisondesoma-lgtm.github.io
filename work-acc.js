@@ -57,9 +57,18 @@
 
   var ticking = false;
   function update() {
-    btn.classList.toggle('is-shown', window.scrollY > window.innerHeight * 0.6);
-    ticking = false;
+  var footer = document.querySelector('.wp-nav-footer');
+  var scrolledEnough = window.scrollY > window.innerHeight * 0.6;
+  var footerVisible = false;
+
+  if (footer) {
+    var footerTop = footer.getBoundingClientRect().top;
+    footerVisible = footerTop < window.innerHeight;
   }
+
+  btn.classList.toggle('is-shown', scrolledEnough && !footerVisible);
+  ticking = false;
+}
   window.addEventListener('scroll', function () {
     if (ticking) return;
     ticking = true;
