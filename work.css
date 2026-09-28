@@ -719,19 +719,21 @@
 /* Back to top button */
 .wp-top {
   position: fixed;
-  right: 28px;
-  bottom: 28px;
+  right: 32px;
+  bottom: 32px;
 
-  width: 44px;
-  height: 44px;
+  width: 72px;
+  height: 72px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
   padding: 0;
-  border: 1px solid var(--rule);
-  background: #fff;
+  border: 1px solid #d8d8d4;
+  border-radius: 50%;
+
+  background: #fafaf7;
   color: var(--ink);
 
   cursor: pointer;
@@ -747,15 +749,17 @@
     visibility 0.25s,
     transform 0.25s,
     background 0.2s;
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
 .wp-top svg {
-  width: 16px;
-  height: 16px;
+  width: 26px;
+  height: 26px;
 }
 
 .wp-top:hover {
-  background: #f5f5f0;
+  background: #f0f0eb;
 }
 
 .wp-top.is-shown {
@@ -769,7 +773,12 @@
   .wp-top {
     right: 20px;
     bottom: 20px;
-    width: 40px;
-    height: 40px;
+    width: 56px;
+    height: 56px;
+  }
+
+  .wp-top svg {
+    width: 22px;
+    height: 22px;
   }
 }
